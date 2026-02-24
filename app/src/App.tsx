@@ -11,6 +11,7 @@ import { ToastProvider } from "./components/ui/Toast";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import { NoiseOverlay } from "./components/layout/NoiseOverlay";
+import { Scanline } from "./components/layout/Scanline";
 
 import { Landing } from "./pages/Landing";
 import { Dashboard } from "./pages/Dashboard";
@@ -33,8 +34,9 @@ function App() {
           <ProgramProvider>
             <ToastProvider>
               <BrowserRouter>
-                <div className="min-h-screen bg-background text-text-primary">
+                <div className="min-h-screen bg-background bg-grid text-text-secondary">
                   <NoiseOverlay />
+                  <Scanline />
                   <Navbar />
                   <Routes>
                     <Route path="/" element={<Landing />} />

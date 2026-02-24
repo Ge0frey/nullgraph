@@ -8,9 +8,9 @@ interface StepHypothesisProps {
 
 export function StepHypothesis({ hypothesis, methodology, onChange }: StepHypothesisProps) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-5">
       <div>
-        <h3 className="font-display font-bold text-sm mb-1 text-text-primary">
+        <h3 className="font-display font-black text-sm mb-1 text-text-primary uppercase tracking-tight">
           Hypothesis
         </h3>
         <p className="text-xs text-text-tertiary mb-3">
@@ -24,7 +24,7 @@ export function StepHypothesis({ hypothesis, methodology, onChange }: StepHypoth
           rows={3}
           maxLength={128}
         />
-        <p className="text-[10px] font-mono text-text-tertiary mt-1 text-right">
+        <p className="text-[10px] font-mono font-bold text-text-tertiary mt-1 text-right tracking-widest">
           {hypothesis.length}/128
         </p>
       </div>
@@ -37,7 +37,7 @@ export function StepHypothesis({ hypothesis, methodology, onChange }: StepHypoth
           rows={3}
           maxLength={128}
         />
-        <p className="text-[10px] font-mono text-text-tertiary mt-1 text-right">
+        <p className="text-[10px] font-mono font-bold text-text-tertiary mt-1 text-right tracking-widest">
           {methodology.length}/128
         </p>
       </div>

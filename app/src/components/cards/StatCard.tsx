@@ -1,24 +1,30 @@
 interface StatCardProps {
   label: string;
   value: string | number;
-  accent?: "amber" | "green" | "blue";
+  accent?: "cyan" | "lime" | "magenta";
 }
 
 const accentColors = {
-  amber: "border-t-null-amber",
-  green: "border-t-archive-green",
-  blue: "border-t-info-blue",
+  cyan: "border-t-neon-cyan",
+  lime: "border-t-neon-lime",
+  magenta: "border-t-neon-magenta",
 };
 
-export function StatCard({ label, value, accent = "amber" }: StatCardProps) {
+const labelColors = {
+  cyan: "text-neon-cyan",
+  lime: "text-neon-lime",
+  magenta: "text-neon-magenta",
+};
+
+export function StatCard({ label, value, accent = "cyan" }: StatCardProps) {
   return (
     <div
-      className={`bg-surface border border-border ${accentColors[accent]} border-t-2 rounded-lg p-4`}
+      className={`glass-card ${accentColors[accent]} border-t-2 rounded-2xl p-5`}
     >
-      <p className="text-[10px] font-mono text-text-tertiary uppercase tracking-wider mb-1">
+      <p className={`text-[11px] font-mono font-bold uppercase tracking-widest mb-2 ${labelColors[accent]}`}>
         {label}
       </p>
-      <p className="text-2xl font-mono font-semibold text-text-primary">
+      <p className="text-3xl font-mono font-bold text-text-primary">
         {value}
       </p>
     </div>

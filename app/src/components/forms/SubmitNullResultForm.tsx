@@ -82,12 +82,24 @@ export function SubmitNullResultForm() {
     <div className="max-w-lg mx-auto">
       <div className="mb-6">
         <ProgressBar current={step} total={TOTAL_STEPS} />
-        <p className="text-xs font-mono text-text-tertiary mt-2">
-          Step {step} of {TOTAL_STEPS}
-        </p>
+        <div className="flex items-center gap-3 mt-3">
+          {[1, 2, 3, 4].map((s) => (
+            <span
+              key={s}
+              className={`text-[10px] font-mono font-bold tracking-widest ${
+                s === step ? "text-neon-cyan" : s < step ? "text-neon-lime" : "text-text-tertiary"
+              }`}
+            >
+              0{s}
+            </span>
+          ))}
+          <span className="text-[10px] font-mono font-bold text-text-tertiary tracking-widest ml-auto">
+            Step {step} of {TOTAL_STEPS}
+          </span>
+        </div>
       </div>
 
-      <div className="bg-surface border border-border rounded-lg p-6">
+      <div className="glass-card rounded-2xl p-6">
         {step === 1 && (
           <StepHypothesis
             hypothesis={hypothesis}

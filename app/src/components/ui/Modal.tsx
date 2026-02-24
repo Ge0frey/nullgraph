@@ -25,22 +25,22 @@ export function Modal({ open, onClose, title, children }: ModalProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div
-        className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+        className="absolute inset-0 bg-[#050505]/80 backdrop-blur-sm"
         onClick={onClose}
       />
-      <div className="relative bg-surface border border-border rounded-lg w-full max-w-lg max-h-[85vh] overflow-y-auto">
-        <div className="flex items-center justify-between p-4 border-b border-border">
-          <h3 className="font-display font-bold text-sm text-text-primary">
+      <div className="relative glass-card rounded-2xl w-full max-w-lg max-h-[85vh] overflow-y-auto">
+        <div className="flex items-center justify-between p-5 border-b border-border">
+          <h3 className="font-display font-black text-sm text-text-primary uppercase tracking-tight">
             {title}
           </h3>
           <button
             onClick={onClose}
-            className="p-1 rounded hover:bg-surface-raised transition-colors"
+            className="p-1.5 rounded-xl hover:bg-white/5 transition-cyber"
           >
-            <X className="w-4 h-4 text-text-secondary" />
+            <X className="w-4 h-4 text-text-tertiary" />
           </button>
         </div>
-        <div className="p-4">{children}</div>
+        <div className="p-5">{children}</div>
       </div>
     </div>
   );

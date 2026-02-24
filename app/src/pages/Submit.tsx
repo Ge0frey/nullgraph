@@ -7,9 +7,9 @@ export function Submit() {
   const { connected } = useWallet();
 
   return (
-    <PageContainer className="pt-20 pb-12">
-      <div className="mb-8 text-center">
-        <h1 className="font-display font-extrabold text-2xl mb-1">
+    <PageContainer className="pt-24 pb-12">
+      <div className="mb-10 text-center">
+        <h1 className="font-display font-black text-3xl uppercase tracking-tight mb-2 text-text-primary">
           Submit Null Result
         </h1>
         <p className="text-sm text-text-secondary">
@@ -18,7 +18,7 @@ export function Submit() {
       </div>
 
       {!connected ? (
-        <div className="flex flex-col items-center gap-4 py-12 border border-border rounded-lg bg-surface max-w-lg mx-auto">
+        <div className="flex flex-col items-center gap-5 py-12 glass-card rounded-2xl max-w-lg mx-auto">
           <p className="text-sm text-text-tertiary font-mono">
             Connect your wallet to submit a null result.
           </p>

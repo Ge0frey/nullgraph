@@ -1,18 +1,18 @@
 interface SpecimenTagProps {
   label: string;
-  variant?: "amber" | "green" | "blue";
+  variant?: "cyan" | "lime" | "magenta";
 }
 
 const variantStyles = {
-  amber: "text-null-amber bg-null-amber/10 border-null-amber/30",
-  green: "text-archive-green bg-archive-green/10 border-archive-green/30",
-  blue: "text-info-blue bg-info-blue/10 border-info-blue/30",
+  cyan: "text-neon-cyan bg-neon-cyan/10 border-neon-cyan/30",
+  lime: "text-neon-lime bg-neon-lime/10 border-neon-lime/30",
+  magenta: "text-neon-magenta bg-neon-magenta/10 border-neon-magenta/30",
 };
 
-export function SpecimenTag({ label, variant = "amber" }: SpecimenTagProps) {
+export function SpecimenTag({ label, variant = "cyan" }: SpecimenTagProps) {
   return (
     <span
-      className={`inline-flex items-center px-2 py-0.5 rounded border text-[11px] font-mono font-semibold tracking-wide ${variantStyles[variant]}`}
+      className={`inline-flex items-center px-2.5 py-0.5 rounded-full border text-[11px] font-mono font-bold tracking-widest uppercase ${variantStyles[variant]}`}
     >
       {label}
     </span>

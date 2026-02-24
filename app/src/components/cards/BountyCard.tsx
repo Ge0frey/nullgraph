@@ -16,20 +16,20 @@ export function BountyCard({ bounty }: BountyCardProps) {
   return (
     <Link
       to={`/market/${bounty.publicKey.toBase58()}`}
-      className="block bg-surface border border-border border-t-2 border-t-null-amber rounded-lg p-4 hover:border-border-hover hover:bg-surface-raised/50 transition-all"
+      className="block glass-card glass-card-hover glow-magenta rounded-2xl p-5"
     >
-      <div className="flex items-start justify-between mb-2">
-        <SpecimenTag label={formatBountyNumber(bountyNum)} variant="blue" />
+      <div className="flex items-start justify-between mb-3">
+        <SpecimenTag label={formatBountyNumber(bountyNum)} variant="magenta" />
         <Badge variant={badgeVariant}>{statusLabel}</Badge>
       </div>
-      <p className="text-sm font-body text-text-primary mb-3 line-clamp-2">
+      <p className="text-sm font-body text-text-primary mb-4 line-clamp-2">
         {decodeString(bounty.description)}
       </p>
       <div className="flex items-center justify-between">
-        <span className="text-sm font-mono font-semibold text-archive-green">
+        <span className="text-sm font-mono font-bold text-neon-lime">
           {formatUSDC(bounty.rewardAmount.toNumber())} USDC
         </span>
-        <span className="text-[10px] font-mono text-text-tertiary">
+        <span className="text-[10px] font-mono font-bold text-text-tertiary uppercase tracking-widest">
           {formatDate(bounty.deadline.toNumber())}
         </span>
       </div>

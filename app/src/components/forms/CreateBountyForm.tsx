@@ -42,7 +42,7 @@ export function CreateBountyForm({ onSuccess }: CreateBountyFormProps) {
         rows={4}
         maxLength={256}
       />
-      <p className="text-[10px] font-mono text-text-tertiary text-right -mt-2">
+      <p className="text-[10px] font-mono font-bold text-text-tertiary text-right -mt-2 tracking-widest">
         {description.length}/256
       </p>
 

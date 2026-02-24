@@ -39,35 +39,31 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const icons: Record<ToastType, React.ReactNode> = {
-    success: <CheckCircle className="w-4 h-4 text-archive-green" />,
-    error: <AlertCircle className="w-4 h-4 text-warning-red" />,
-    info: <Info className="w-4 h-4 text-info-blue" />,
-  };
-
-  const borderColors: Record<ToastType, string> = {
-    success: "border-l-archive-green",
-    error: "border-l-warning-red",
-    info: "border-l-info-blue",
+    success: <CheckCircle className="w-4 h-4 text-neon-lime" />,
+    error: <AlertCircle className="w-4 h-4 text-neon-magenta" />,
+    info: <Info className="w-4 h-4 text-neon-cyan" />,
   };
 
   return (
     <ToastContext.Provider value={{ toast: addToast }}>
       {children}
-      <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-2 max-w-sm">
+      <div className="fixed top-4 right-4 z-50 flex flex-col gap-2 max-w-sm">
         {toasts.map((t) => (
           <div
             key={t.id}
-            className={`bg-surface border border-border ${borderColors[t.type]} border-l-2 rounded-md p-3 flex items-start gap-2 shadow-lg animate-[fadeIn_0.2s_ease-out]`}
+            className="glass-card rounded-xl p-3 flex items-start gap-3 shadow-lg animate-[fadeIn_0.2s_ease-out]"
           >
-            {icons[t.type]}
+            <div className="mt-0.5">{icons[t.type]}</div>
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-mono text-text-primary">{t.message}</p>
+              <p className="text-[10px] font-mono font-bold text-text-primary uppercase tracking-wider">
+                {t.message}
+              </p>
               {t.txHash && (
                 <a
                   href={`https://explorer.solana.com/tx/${t.txHash}?cluster=devnet`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[10px] font-mono text-info-blue hover:underline mt-0.5 block truncate"
+                  className="text-[10px] font-mono text-neon-cyan hover:underline mt-1 block truncate"
                 >
                   View on Explorer
                 </a>
@@ -75,7 +71,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
             </div>
             <button
               onClick={() => removeToast(t.id)}
-              className="p-0.5 hover:bg-surface-raised rounded"
+              className="p-0.5 hover:bg-white/5 rounded-lg"
             >
               <X className="w-3 h-3 text-text-tertiary" />
             </button>

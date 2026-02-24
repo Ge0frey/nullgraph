@@ -8,9 +8,9 @@ interface StepDataProps {
 
 export function StepData({ dataFile, dataHash, onFileChange }: StepDataProps) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-5">
       <div>
-        <h3 className="font-display font-bold text-sm mb-1 text-text-primary">
+        <h3 className="font-display font-black text-sm mb-1 text-text-primary uppercase tracking-tight">
           Data Attachment
         </h3>
         <p className="text-xs text-text-tertiary mb-3">
@@ -20,9 +20,9 @@ export function StepData({ dataFile, dataHash, onFileChange }: StepDataProps) {
         </p>
       </div>
 
-      <label className="flex flex-col items-center justify-center gap-2 p-8 border-2 border-dashed border-border rounded-lg cursor-pointer hover:border-null-amber/40 transition-colors">
+      <label className="flex flex-col items-center justify-center gap-3 p-8 border-2 border-dashed border-border rounded-2xl cursor-pointer hover:border-neon-cyan/40 hover:bg-neon-cyan/5 transition-cyber">
         <Upload className="w-6 h-6 text-text-tertiary" />
-        <span className="text-xs font-mono text-text-secondary">
+        <span className="text-xs font-mono font-bold text-text-secondary uppercase tracking-wider">
           {dataFile ? dataFile.name : "Click to upload (CSV, PDF, JSON, etc.)"}
         </span>
         <input
@@ -33,11 +33,11 @@ export function StepData({ dataFile, dataHash, onFileChange }: StepDataProps) {
       </label>
 
       {dataHash && (
-        <div className="bg-surface-raised border border-border rounded-md p-3">
-          <p className="text-[10px] font-mono text-text-tertiary uppercase tracking-wider mb-1">
+        <div className="glass-card rounded-2xl p-4">
+          <p className="text-[10px] font-mono font-bold text-text-tertiary uppercase tracking-widest mb-1">
             SHA-256 Hash
           </p>
-          <p className="text-xs font-mono text-null-amber break-all">
+          <p className="text-xs font-mono text-neon-cyan break-all">
             {dataHash}
           </p>
         </div>

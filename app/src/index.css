@@ -1,40 +1,78 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #060608;
-  --color-surface: #0c0c12;
-  --color-surface-raised: #12121c;
-  --color-border: #1e1e2a;
-  --color-border-hover: #2a2a3a;
+  --color-background: #050505;
+  --color-surface: rgba(255, 255, 255, 0.025);
+  --color-surface-raised: rgba(255, 255, 255, 0.05);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(255, 255, 255, 0.15);
 
-  --color-archive-green: #7aff94;
-  --color-null-amber: #ffb347;
-  --color-bio-green: #00ff88;
-  --color-warning-red: #ff4d4d;
-  --color-info-blue: #4da6ff;
+  --color-neon-cyan: #00f2ff;
+  --color-neon-magenta: #ff00e5;
+  --color-neon-lime: #adff00;
 
-  --color-text-primary: #e4e2dd;
-  --color-text-secondary: #8a8892;
-  --color-text-tertiary: #54525e;
+  --color-text-primary: rgba(255, 255, 255, 0.9);
+  --color-text-secondary: rgba(255, 255, 255, 0.6);
+  --color-text-tertiary: rgba(255, 255, 255, 0.4);
 
-  --font-family-display: "DM Sans", "Inter", sans-serif;
-  --font-family-body: "IBM Plex Sans", "Inter", sans-serif;
-  --font-family-mono: "IBM Plex Mono", "JetBrains Mono", monospace;
+  --font-family-display: "Cabinet Grotesk", "Inter", sans-serif;
+  --font-family-body: "Satoshi", "Inter", sans-serif;
+  --font-family-mono: "Space Grotesk", "JetBrains Mono", monospace;
 }
 
 /* Base styles */
 html {
   font-family: var(--font-family-body);
   background: var(--color-background);
-  color: var(--color-text-primary);
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
 }
 
-/* Micro-grid background */
-.bg-micro-grid {
+/* 40px grid background */
+.bg-grid {
   background-image:
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-  background-size: 24px 24px;
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Glassmorphism card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-hover:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Scanline effect */
+@keyframes scanline {
+  0% { top: 0%; }
+  100% { top: 100%; }
+}
+
+.scanline {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 242, 255, 0.2), transparent);
+  z-index: 45;
+  pointer-events: none;
+  animation: scanline 8s linear infinite;
+}
+
+/* Scroll progress bar */
+.scroll-progress {
+  background: linear-gradient(90deg, #00f2ff, #ff00e5);
 }
 
 /* Noise overlay texture */
@@ -43,62 +81,24 @@ html {
   opacity: 0.018;
 }
 
-/* Hatching pattern for null result cards */
-.hatching {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 4px,
-    rgba(255, 179, 71, 0.04) 4px,
-    rgba(255, 179, 71, 0.04) 5px
-  );
+/* Pulsing status dot */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
 
-/* Wallet adapter style overrides */
-.wallet-adapter-button {
-  font-family: var(--font-family-mono) !important;
-  font-size: 0.75rem !important;
-  height: 36px !important;
-  padding: 0 16px !important;
-  border-radius: 6px !important;
-  background: var(--color-surface-raised) !important;
-  border: 1px solid var(--color-border) !important;
-  color: var(--color-bio-green) !important;
+.pulse-dot {
+  animation: pulse-dot 1.5s ease-in-out infinite;
 }
 
-.wallet-adapter-button:hover {
-  background: var(--color-surface) !important;
-  border-color: var(--color-bio-green) !important;
+/* Pulsing glow effect */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 10px currentColor; opacity: 1; }
+  50% { box-shadow: 0 0 20px currentColor; opacity: 0.7; }
 }
 
-.wallet-adapter-button-trigger {
-  background: transparent !important;
-  border: 1px solid var(--color-bio-green) !important;
-}
-
-.wallet-adapter-modal-wrapper {
-  background: var(--color-surface) !important;
-  border: 1px solid var(--color-border) !important;
-}
-
-.wallet-adapter-modal-title {
-  font-family: var(--font-family-display) !important;
-  color: var(--color-text-primary) !important;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-background);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--color-border);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-border-hover);
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
 }
 
 /* Animated strikethrough */
@@ -114,16 +114,89 @@ html {
   top: 50%;
   height: 3px;
   width: 0;
-  background: var(--color-null-amber);
+  background: var(--color-neon-cyan);
   animation: strikethrough 0.8s ease-out forwards;
 }
 
-/* Pulsing dot */
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+/* Card hover neon glow variants */
+.glow-cyan:hover {
+  box-shadow: 0 0 30px -10px #00f2ff;
+  border-color: rgba(0, 242, 255, 0.4) !important;
 }
 
-.pulse-dot {
-  animation: pulse-dot 2s ease-in-out infinite;
+.glow-magenta:hover {
+  box-shadow: 0 0 30px -10px #ff00e5;
+  border-color: rgba(255, 0, 229, 0.4) !important;
+}
+
+.glow-lime:hover {
+  box-shadow: 0 0 30px -10px #adff00;
+  border-color: rgba(173, 255, 0, 0.4) !important;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Wallet adapter style overrides */
+.wallet-adapter-button {
+  font-family: var(--font-family-mono) !important;
+  font-size: 0.75rem !important;
+  height: 36px !important;
+  padding: 0 16px !important;
+  border-radius: 16px !important;
+  background: rgba(255, 255, 255, 0.025) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #00f2ff !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.wallet-adapter-button:hover {
+  background: rgba(0, 242, 255, 0.08) !important;
+  border-color: rgba(0, 242, 255, 0.4) !important;
+  box-shadow: 0 0 20px -8px #00f2ff !important;
+}
+
+.wallet-adapter-button-trigger {
+  background: transparent !important;
+  border: 1px solid rgba(0, 242, 255, 0.3) !important;
+}
+
+.wallet-adapter-modal-wrapper {
+  background: rgba(10, 10, 10, 0.95) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
+}
+
+.wallet-adapter-modal-title {
+  font-family: var(--font-family-display) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-transform: uppercase !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Utility: easing for all transitions */
+.transition-cyber {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }

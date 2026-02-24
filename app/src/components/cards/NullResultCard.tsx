@@ -16,16 +16,16 @@ export function NullResultCard({ result }: NullResultCardProps) {
   return (
     <Link
       to={`/nka/${specimenNum}`}
-      className="block bg-surface border border-border border-l-2 border-l-null-amber rounded-lg p-4 hover:border-border-hover hover:bg-surface-raised/50 transition-all hatching"
+      className="block glass-card glass-card-hover glow-cyan rounded-2xl p-5"
     >
-      <div className="flex items-start justify-between mb-2">
+      <div className="flex items-start justify-between mb-3">
         <SpecimenTag label={formatSpecimenNumber(specimenNum)} />
         <Badge variant={badgeVariant}>{statusLabel}</Badge>
       </div>
-      <h3 className="text-sm font-body font-medium text-text-primary mb-1 line-clamp-2">
+      <h3 className="text-sm font-body font-medium text-text-primary mb-2 line-clamp-2">
         {decodeString(result.hypothesis)}
       </h3>
-      <p className="text-xs font-mono text-text-tertiary">
+      <p className="text-[10px] font-mono font-bold text-text-tertiary uppercase tracking-widest">
         {formatDate(result.createdAt.toNumber())}
       </p>
     </Link>

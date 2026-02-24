@@ -17,9 +17,9 @@ export function StepResults({
   onChange,
 }: StepResultsProps) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-5">
       <div>
-        <h3 className="font-display font-bold text-sm mb-1 text-text-primary">
+        <h3 className="font-display font-black text-sm mb-1 text-text-primary uppercase tracking-tight">
           Results
         </h3>
         <p className="text-xs text-text-tertiary mb-3">
@@ -27,13 +27,13 @@ export function StepResults({
         </p>
         <Textarea
           label="Expected Outcome"
-          placeholder="e.g., Significant inhibition of enzyme activity (p&lt;0.05)..."
+          placeholder="e.g., Significant inhibition of enzyme activity (p<0.05)..."
           value={expectedOutcome}
           onChange={(e) => onChange("expectedOutcome", e.target.value)}
           rows={2}
           maxLength={128}
         />
-        <p className="text-[10px] font-mono text-text-tertiary mt-1 text-right">
+        <p className="text-[10px] font-mono font-bold text-text-tertiary mt-1 text-right tracking-widest">
           {expectedOutcome.length}/128
         </p>
       </div>
@@ -46,7 +46,7 @@ export function StepResults({
           rows={2}
           maxLength={128}
         />
-        <p className="text-[10px] font-mono text-text-tertiary mt-1 text-right">
+        <p className="text-[10px] font-mono font-bold text-text-tertiary mt-1 text-right tracking-widest">
           {actualOutcome.length}/128
         </p>
       </div>

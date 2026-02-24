@@ -10,15 +10,15 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-archive-green/10 text-archive-green border border-archive-green/30 hover:bg-archive-green/20 hover:border-archive-green/50",
+    "bg-white text-[#050505] font-bold hover:bg-white/90 hover:shadow-[0_0_20px_-8px_#adff00]",
   secondary:
-    "bg-surface-raised text-text-primary border border-border hover:bg-surface hover:border-border-hover",
+    "glass-card text-text-primary hover:border-border-hover hover:bg-white/5",
   amber:
-    "bg-null-amber/10 text-null-amber border border-null-amber/30 hover:bg-null-amber/20 hover:border-null-amber/50",
+    "bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/30 hover:bg-neon-cyan/20 hover:border-neon-cyan/50 hover:shadow-[0_0_20px_-8px_#00f2ff]",
   ghost:
-    "bg-transparent text-text-secondary border border-transparent hover:text-text-primary hover:bg-surface",
+    "bg-transparent text-text-secondary border border-transparent hover:text-text-primary hover:bg-white/5",
   danger:
-    "bg-warning-red/10 text-warning-red border border-warning-red/30 hover:bg-warning-red/20 hover:border-warning-red/50",
+    "bg-neon-magenta/10 text-neon-magenta border border-neon-magenta/30 hover:bg-neon-magenta/20 hover:border-neon-magenta/50 hover:shadow-[0_0_20px_-8px_#ff00e5]",
 };
 
 export function Button({
@@ -31,7 +31,7 @@ export function Button({
 }: ButtonProps) {
   return (
     <button
-      className={`inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md text-xs font-mono font-medium transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed ${variantStyles[variant]} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-2xl text-xs font-mono font-bold uppercase tracking-wider transition-cyber disabled:opacity-40 disabled:cursor-not-allowed ${variantStyles[variant]} ${className}`}
       disabled={disabled || loading}
       {...props}
     >
