@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
 
-declare_id!("8MqKBAvXCe4ASv3gBAokyVuHUk311D3TvMfQ5pYdjEzo");
+declare_id!("2u3DXQq9A6UgMryeVSWCNdYLy3Fjh391R5hcfWYkCgZK");
 
 #[program]
 pub mod nullgraph {
