@@ -1,0 +1,1 @@
+NullGraph is a Solana-native protocol that incentivizes the publication, verification, and monetization of negative scientific results — the experiments that "failed" — by converting them into tokenized knowledge assets on-chain.
