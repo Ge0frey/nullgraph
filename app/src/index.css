@@ -1,1 +1,129 @@
 @import "tailwindcss";
+
+@theme {
+  --color-background: #060608;
+  --color-surface: #0c0c12;
+  --color-surface-raised: #12121c;
+  --color-border: #1e1e2a;
+  --color-border-hover: #2a2a3a;
+
+  --color-archive-green: #7aff94;
+  --color-null-amber: #ffb347;
+  --color-bio-green: #00ff88;
+  --color-warning-red: #ff4d4d;
+  --color-info-blue: #4da6ff;
+
+  --color-text-primary: #e4e2dd;
+  --color-text-secondary: #8a8892;
+  --color-text-tertiary: #54525e;
+
+  --font-family-display: "DM Sans", "Inter", sans-serif;
+  --font-family-body: "IBM Plex Sans", "Inter", sans-serif;
+  --font-family-mono: "IBM Plex Mono", "JetBrains Mono", monospace;
+}
+
+/* Base styles */
+html {
+  font-family: var(--font-family-body);
+  background: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+/* Micro-grid background */
+.bg-micro-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Noise overlay texture */
+.noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.018;
+}
+
+/* Hatching pattern for null result cards */
+.hatching {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 4px,
+    rgba(255, 179, 71, 0.04) 4px,
+    rgba(255, 179, 71, 0.04) 5px
+  );
+}
+
+/* Wallet adapter style overrides */
+.wallet-adapter-button {
+  font-family: var(--font-family-mono) !important;
+  font-size: 0.75rem !important;
+  height: 36px !important;
+  padding: 0 16px !important;
+  border-radius: 6px !important;
+  background: var(--color-surface-raised) !important;
+  border: 1px solid var(--color-border) !important;
+  color: var(--color-bio-green) !important;
+}
+
+.wallet-adapter-button:hover {
+  background: var(--color-surface) !important;
+  border-color: var(--color-bio-green) !important;
+}
+
+.wallet-adapter-button-trigger {
+  background: transparent !important;
+  border: 1px solid var(--color-bio-green) !important;
+}
+
+.wallet-adapter-modal-wrapper {
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border) !important;
+}
+
+.wallet-adapter-modal-title {
+  font-family: var(--font-family-display) !important;
+  color: var(--color-text-primary) !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-hover);
+}
+
+/* Animated strikethrough */
+@keyframes strikethrough {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.strike-animate::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 3px;
+  width: 0;
+  background: var(--color-null-amber);
+  animation: strikethrough 0.8s ease-out forwards;
+}
+
+/* Pulsing dot */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
