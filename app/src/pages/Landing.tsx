@@ -20,56 +20,54 @@ export function Landing() {
     <div className="min-h-screen">
       {/* Hero */}
       <section className="relative h-[90vh] flex items-center justify-center px-4 overflow-hidden">
-        {/* Animated radial gradient background */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,242,255,0.12)_0%,rgba(255,0,229,0.08)_40%,transparent_70%)]" />
+        {/* Subtle radial gradient — no harsh neon blast */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(122,184,204,0.07)_0%,rgba(184,138,120,0.04)_45%,transparent_70%)]" />
 
         <div className="relative z-10 max-w-[1120px] mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 glass-card rounded-full mb-8">
-            <span className="w-2 h-2 rounded-full bg-[#22c55e] pulse-dot shadow-[0_0_4px_#22c55e]" />
+            <span className="w-2 h-2 rounded-full bg-[#5a9e6e] pulse-dot" />
             <span className="text-[10px] font-mono font-bold text-text-secondary uppercase tracking-widest">
               Solana Graveyard Hackathon x Bio Protocol
             </span>
           </div>
 
-          <h1 className="font-display font-black text-5xl sm:text-7xl lg:text-[10rem] leading-[0.85] tracking-tighter mb-6 uppercase">
-            <span className="bg-gradient-to-r from-neon-cyan via-neon-magenta to-neon-lime bg-clip-text text-transparent">
-              Null
-            </span>
-            <span className="text-text-primary">Graph</span>
+          <h1 className="font-display font-black text-5xl sm:text-7xl lg:text-[9rem] leading-[0.85] tracking-tighter mb-6 uppercase text-text-primary">
+            Null
+            <span className="text-neon-cyan">Graph</span>
           </h1>
 
-          <p className="font-mono text-lg sm:text-xl text-text-secondary max-w-[600px] mx-auto mb-10">
+          <p className="font-mono text-base sm:text-lg text-text-secondary max-w-[580px] mx-auto mb-10">
             Tokenizing the{" "}
-            <span className="text-neon-cyan font-bold">95%</span> of science
-            that journals throw away. Publish, verify, and monetize{" "}
-            <span className="text-neon-magenta font-bold">null results</span>{" "}
+            <span className="text-neon-cyan font-semibold">95%</span> of science
+            that journals discard. Publish, verify, and monetize{" "}
+            <span className="text-text-primary font-semibold">null results</span>{" "}
             on Solana.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/submit"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-white text-[#050505] text-sm font-mono font-bold uppercase tracking-wider hover:shadow-[0_0_30px_-8px_#ffffff] transition-cyber"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-white/90 text-[#060810] text-sm font-mono font-bold uppercase tracking-wider hover:bg-white transition-cyber"
             >
               Submit Null Result <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               to="/dashboard"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl glass-card text-sm font-mono font-bold text-text-primary uppercase tracking-wider hover:border-border-hover transition-cyber"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl glass-card text-sm font-mono font-bold text-text-primary uppercase tracking-wider hover:border-border-hover transition-cyber"
             >
               Browse Registry
             </Link>
           </div>
         </div>
 
-        {/* Floating glass shapes - decorative */}
-        <div className="absolute top-1/4 left-[10%] w-32 h-32 glass-card rounded-3xl -rotate-12 opacity-30 hidden lg:block" />
-        <div className="absolute bottom-1/4 right-[8%] w-24 h-24 glass-card rounded-2xl rotate-6 opacity-20 hidden lg:block" />
-        <div className="absolute top-1/3 right-[15%] w-16 h-16 glass-card rounded-xl rotate-12 opacity-25 hidden lg:block" />
+        {/* Floating glass shapes — decorative, muted */}
+        <div className="absolute top-1/4 left-[10%] w-32 h-32 glass-card rounded-3xl -rotate-12 opacity-20 hidden lg:block" />
+        <div className="absolute bottom-1/4 right-[8%] w-24 h-24 glass-card rounded-2xl rotate-6 opacity-15 hidden lg:block" />
+        <div className="absolute top-1/3 right-[15%] w-16 h-16 glass-card rounded-xl rotate-12 opacity-18 hidden lg:block" />
       </section>
 
       {/* Stats / Social Proof */}
-      <section className="border-y border-border bg-black/40 py-12 px-4">
+      <section className="border-y border-border bg-black/30 py-12 px-4">
         <div className="max-w-[1120px] mx-auto grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
           <div>
             <p className="text-3xl sm:text-4xl font-mono font-bold text-text-primary mb-1">95%</p>
@@ -101,8 +99,8 @@ export function Landing() {
           </h2>
           <div className="grid sm:grid-cols-2 gap-4">
             <div className="glass-card glass-card-hover glow-cyan rounded-3xl p-6">
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 bg-neon-cyan/10">
-                <FileX2 className="w-6 h-6 text-neon-cyan" />
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 bg-neon-cyan/8">
+                <FileX2 className="w-5 h-5 text-neon-cyan" />
               </div>
               <h3 className="font-display font-black text-sm uppercase tracking-tight mb-2 text-text-primary">
                 Publication Bias
@@ -112,8 +110,8 @@ export function Landing() {
               </p>
             </div>
             <div className="glass-card glass-card-hover glow-magenta rounded-3xl p-6">
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 bg-neon-magenta/10">
-                <Eye className="w-6 h-6 text-neon-magenta" />
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 bg-neon-magenta/8">
+                <Eye className="w-5 h-5 text-neon-magenta" />
               </div>
               <h3 className="font-display font-black text-sm uppercase tracking-tight mb-2 text-text-primary">
                 Wasted Replication
@@ -123,8 +121,8 @@ export function Landing() {
               </p>
             </div>
             <div className="glass-card glass-card-hover glow-lime rounded-3xl p-6">
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 bg-neon-lime/10">
-                <Coins className="w-6 h-6 text-neon-lime" />
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 bg-neon-lime/8">
+                <Coins className="w-5 h-5 text-neon-lime" />
               </div>
               <h3 className="font-display font-black text-sm uppercase tracking-tight mb-2 text-text-primary">
                 Lost Investment
@@ -134,14 +132,14 @@ export function Landing() {
               </p>
             </div>
             <div className="glass-card glass-card-hover glow-cyan rounded-3xl p-6">
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 bg-neon-cyan/10">
-                <Lock className="w-6 h-6 text-neon-cyan" />
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 bg-neon-cyan/8">
+                <Lock className="w-5 h-5 text-neon-cyan" />
               </div>
               <h3 className="font-display font-black text-sm uppercase tracking-tight mb-2 text-text-primary">
                 No Incentive
               </h3>
               <p className="text-sm text-text-secondary">
-                Researchers have zero incentive to publish 'non-discoveries'.
+                Researchers have zero incentive to publish non-discoveries.
               </p>
             </div>
           </div>
@@ -159,8 +157,8 @@ export function Landing() {
           </h2>
           <div className="grid sm:grid-cols-3 gap-4">
             <div className="glass-card glass-card-hover glow-cyan rounded-3xl p-8">
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 bg-neon-cyan/10">
-                <Database className="w-6 h-6 text-neon-cyan" />
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 bg-neon-cyan/8">
+                <Database className="w-5 h-5 text-neon-cyan" />
               </div>
               <h3 className="font-display font-black text-sm uppercase tracking-tight mb-2 text-text-primary">
                 Tokenize
@@ -174,8 +172,8 @@ export function Landing() {
               </div>
             </div>
             <div className="glass-card glass-card-hover glow-magenta rounded-3xl p-8">
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 bg-neon-magenta/10">
-                <Shield className="w-6 h-6 text-neon-magenta" />
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 bg-neon-magenta/8">
+                <Shield className="w-5 h-5 text-neon-magenta" />
               </div>
               <h3 className="font-display font-black text-sm uppercase tracking-tight mb-2 text-text-primary">
                 Verify
@@ -189,8 +187,8 @@ export function Landing() {
               </div>
             </div>
             <div className="glass-card glass-card-hover glow-lime rounded-3xl p-8">
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 bg-neon-lime/10">
-                <DollarSign className="w-6 h-6 text-neon-lime" />
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 bg-neon-lime/8">
+                <DollarSign className="w-5 h-5 text-neon-lime" />
               </div>
               <h3 className="font-display font-black text-sm uppercase tracking-tight mb-2 text-text-primary">
                 Monetize
@@ -226,7 +224,7 @@ export function Landing() {
             ].map((item) => (
               <div key={item.step} className="glass-card glass-card-hover rounded-2xl p-5 text-center">
                 <span className="text-[10px] font-mono font-bold text-neon-cyan tracking-widest">{item.step}</span>
-                <item.icon className="w-5 h-5 text-text-secondary mx-auto my-3" />
+                <item.icon className="w-5 h-5 text-text-tertiary mx-auto my-3" />
                 <h3 className="font-display font-black text-xs uppercase tracking-tight mb-1 text-text-primary">
                   {item.title}
                 </h3>
@@ -238,7 +236,7 @@ export function Landing() {
       </section>
 
       {/* Tech Stack */}
-      <section className="py-12 px-4 border-y border-border bg-black/40">
+      <section className="py-12 px-4 border-y border-border bg-black/30">
         <div className="max-w-[1120px] mx-auto text-center">
           <p className="text-[10px] font-mono font-bold text-text-tertiary uppercase tracking-widest mb-4">
             Built With
@@ -246,10 +244,7 @@ export function Landing() {
           <div className="flex flex-wrap items-center justify-center gap-3 text-[10px] font-mono font-bold text-text-secondary uppercase tracking-widest">
             {["Solana", "Anchor 0.31.1", "SPL Token", "React 19", "Vite 7", "Tailwind v4", "TypeScript"].map(
               (tech) => (
-                <span
-                  key={tech}
-                  className="px-4 py-2 rounded-full glass-card"
-                >
+                <span key={tech} className="px-4 py-2 rounded-full glass-card">
                   {tech}
                 </span>
               )
@@ -262,7 +257,7 @@ export function Landing() {
       <section className="py-20 px-4">
         <div className="max-w-[1120px] mx-auto">
           <div className="grid sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-border">
-            <div className="p-8 text-center hover:bg-white/[0.02] transition-cyber">
+            <div className="p-8 text-center hover:bg-white/[0.015] transition-cyber">
               <p className="text-[11px] font-mono font-bold text-neon-cyan uppercase tracking-widest mb-3">
                 Researchers
               </p>
@@ -274,12 +269,12 @@ export function Landing() {
               </p>
               <Link
                 to="/submit"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-xs font-mono font-bold uppercase tracking-wider transition-cyber border border-neon-cyan/30 text-neon-cyan hover:bg-neon-cyan/10 hover:shadow-[0_0_20px_-8px_#00f2ff]"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-xs font-mono font-bold uppercase tracking-wider transition-cyber border border-neon-cyan/25 text-neon-cyan hover:bg-neon-cyan/8 hover:border-neon-cyan/40"
               >
                 Submit NKA <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
-            <div className="p-8 text-center hover:bg-white/[0.02] transition-cyber">
+            <div className="p-8 text-center hover:bg-white/[0.015] transition-cyber">
               <p className="text-[11px] font-mono font-bold text-neon-magenta uppercase tracking-widest mb-3">
                 BioDAOs
               </p>
@@ -291,12 +286,12 @@ export function Landing() {
               </p>
               <Link
                 to="/market"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-xs font-mono font-bold uppercase tracking-wider transition-cyber border border-neon-magenta/30 text-neon-magenta hover:bg-neon-magenta/10 hover:shadow-[0_0_20px_-8px_#ff00e5]"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-xs font-mono font-bold uppercase tracking-wider transition-cyber border border-neon-magenta/25 text-neon-magenta hover:bg-neon-magenta/8 hover:border-neon-magenta/40"
               >
                 Create Bounty <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
-            <div className="p-8 text-center hover:bg-white/[0.02] transition-cyber">
+            <div className="p-8 text-center hover:bg-white/[0.015] transition-cyber">
               <p className="text-[11px] font-mono font-bold text-neon-lime uppercase tracking-widest mb-3">
                 Everyone
               </p>
@@ -308,7 +303,7 @@ export function Landing() {
               </p>
               <Link
                 to="/dashboard"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-xs font-mono font-bold uppercase tracking-wider transition-cyber border border-neon-lime/30 text-neon-lime hover:bg-neon-lime/10 hover:shadow-[0_0_20px_-8px_#adff00]"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-xs font-mono font-bold uppercase tracking-wider transition-cyber border border-neon-lime/25 text-neon-lime hover:bg-neon-lime/8 hover:border-neon-lime/40"
               >
                 View Dashboard <ArrowRight className="w-3.5 h-3.5" />
               </Link>
