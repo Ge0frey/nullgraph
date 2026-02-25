@@ -10,15 +10,15 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-white text-[#050505] font-bold hover:bg-white/90 hover:shadow-[0_0_20px_-8px_#adff00]",
+    "bg-white/90 text-[#060810] font-bold hover:bg-white",
   secondary:
     "glass-card text-text-primary hover:border-border-hover hover:bg-white/5",
   amber:
-    "bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/30 hover:bg-neon-cyan/20 hover:border-neon-cyan/50 hover:shadow-[0_0_20px_-8px_#00f2ff]",
+    "bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/25 hover:bg-neon-cyan/16 hover:border-neon-cyan/40",
   ghost:
-    "bg-transparent text-text-secondary border border-transparent hover:text-text-primary hover:bg-white/5",
+    "bg-transparent text-text-secondary border border-transparent hover:text-text-primary hover:bg-white/4",
   danger:
-    "bg-neon-magenta/10 text-neon-magenta border border-neon-magenta/30 hover:bg-neon-magenta/20 hover:border-neon-magenta/50 hover:shadow-[0_0_20px_-8px_#ff00e5]",
+    "bg-neon-magenta/10 text-neon-magenta border border-neon-magenta/25 hover:bg-neon-magenta/16 hover:border-neon-magenta/40",
 };
 
 export function Button({
