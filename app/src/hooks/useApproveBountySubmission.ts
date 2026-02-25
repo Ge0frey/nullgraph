@@ -1,6 +1,11 @@
 import { useCallback, useState } from "react";
 import { PublicKey } from "@solana/web3.js";
-import { TOKEN_PROGRAM_ID, getAssociatedTokenAddress } from "@solana/spl-token";
+import {
+  TOKEN_PROGRAM_ID,
+  getAssociatedTokenAddress,
+  createAssociatedTokenAccountInstruction,
+  ASSOCIATED_TOKEN_PROGRAM_ID,
+} from "@solana/spl-token";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useProgram } from "../context/ProgramContext";
 import { findProtocolStatePDA, findVaultPDA } from "../lib/pda";
@@ -39,6 +44,36 @@ export function useApproveBountySubmission() {
           protocol.treasury
         );
 
+        // Create ATAs if they don't exist yet (researcher/treasury may never have held USDC)
+        const preInstructions = [];
+        const connection = program.provider.connection;
+
+        const [researcherAtaInfo, treasuryAtaInfo] = await Promise.all([
+          connection.getAccountInfo(researcherUsdcAta),
+          connection.getAccountInfo(treasuryUsdcAta),
+        ]);
+
+        if (!researcherAtaInfo) {
+          preInstructions.push(
+            createAssociatedTokenAccountInstruction(
+              publicKey,
+              researcherUsdcAta,
+              submission.researcher,
+              DEVNET_USDC_MINT
+            )
+          );
+        }
+        if (!treasuryAtaInfo) {
+          preInstructions.push(
+            createAssociatedTokenAccountInstruction(
+              publicKey,
+              treasuryUsdcAta,
+              protocol.treasury,
+              DEVNET_USDC_MINT
+            )
+          );
+        }
+
         toast("info", "Awaiting wallet approval...");
 
         const tx = await program.methods
@@ -55,6 +90,7 @@ export function useApproveBountySubmission() {
             usdcMint: DEVNET_USDC_MINT,
             tokenProgram: TOKEN_PROGRAM_ID,
           })
+          .preInstructions(preInstructions)
           .rpc();
 
         toast("success", "Bounty approved! USDC transferred.", tx);
