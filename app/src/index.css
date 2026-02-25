@@ -2,19 +2,19 @@
 
 @theme {
   --color-background: #060810;
-  --color-surface: rgba(255, 255, 255, 0.025);
-  --color-surface-raised: rgba(255, 255, 255, 0.05);
-  --color-border: rgba(255, 255, 255, 0.07);
-  --color-border-hover: rgba(255, 255, 255, 0.13);
+  --color-surface: #0d1017;
+  --color-surface-raised: #131720;
+  --color-border: #1c2030;
+  --color-border-hover: #2a3045;
 
-  /* Muted, sophisticated accents */
+  /* Sharp, confident accents */
   --color-neon-cyan: #7ab8cc;
   --color-neon-magenta: #b88a78;
   --color-neon-lime: #7aa87a;
 
-  --color-text-primary: rgba(255, 255, 255, 0.88);
-  --color-text-secondary: rgba(255, 255, 255, 0.52);
-  --color-text-tertiary: rgba(255, 255, 255, 0.32);
+  --color-text-primary: #ebebeb;
+  --color-text-secondary: #8b8fa0;
+  --color-text-tertiary: #505468;
 
   --font-family-display: "Cabinet Grotesk", "Inter", sans-serif;
   --font-family-body: "Satoshi", "Inter", sans-serif;
@@ -25,37 +25,35 @@
 html {
   font-family: var(--font-family-body);
   background: var(--color-background);
-  color: rgba(255, 255, 255, 0.52);
+  color: var(--color-text-secondary);
   line-height: 1.7;
 }
 
-/* 40px grid background — visible enough to give texture */
+/* 40px grid background */
 .bg-grid {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
-/* Glassmorphism card */
+/* Card — solid backgrounds, no blur */
 .glass-card {
-  background: rgba(255, 255, 255, 0.025);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: #0d1017;
+  border: 1px solid #1c2030;
 }
 
 .glass-card-hover {
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card-hover:hover {
   transform: translateY(-4px);
-  border-color: rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
+  border-color: #2a3045;
+  background: #111520;
 }
 
-/* Scanline — very subtle, almost imperceptible */
+/* Scanline — very subtle */
 @keyframes scanline {
   0% { top: 0%; }
   100% { top: 100%; }
@@ -65,8 +63,8 @@ html {
   position: fixed;
   left: 0;
   width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(122, 184, 204, 0.06), transparent);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(122, 184, 204, 0.08), transparent);
   z-index: 45;
   pointer-events: none;
   animation: scanline 12s linear infinite;
@@ -77,16 +75,42 @@ html {
   background: #7ab8cc;
 }
 
-/* Noise overlay texture */
+/* Noise overlay texture — extremely faint */
 .noise-overlay {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-  opacity: 0.015;
+  opacity: 0.008;
+}
+
+/* ── Bio Protocol hero animations ──────────────────────────── */
+@keyframes bio-float {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -53%) scale(1.015); }
+}
+
+@keyframes bio-rotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes bio-drift {
+  0%, 100% { transform: rotate(25deg) translateY(0); }
+  50% { transform: rotate(28deg) translateY(-24px); }
+}
+
+@keyframes bio-drift-reverse {
+  0%, 100% { transform: rotate(-18deg) translateY(0); }
+  50% { transform: rotate(-15deg) translateY(18px); }
+}
+
+@keyframes bio-breathe {
+  0%, 100% { opacity: var(--breathe-min); }
+  50% { opacity: var(--breathe-max); }
 }
 
 /* Pulsing status dot */
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.45; }
+  50% { opacity: 0.4; }
 }
 
 .pulse-dot {
@@ -110,20 +134,20 @@ html {
   animation: strikethrough 0.8s ease-out forwards;
 }
 
-/* Card hover — subtle lift, no harsh glow */
+/* Card hover lift with accent */
 .glow-cyan:hover {
-  box-shadow: 0 8px 32px -8px rgba(122, 184, 204, 0.18);
-  border-color: rgba(122, 184, 204, 0.25) !important;
+  box-shadow: 0 8px 32px -12px rgba(122, 184, 204, 0.25);
+  border-color: rgba(122, 184, 204, 0.3) !important;
 }
 
 .glow-magenta:hover {
-  box-shadow: 0 8px 32px -8px rgba(184, 138, 120, 0.18);
-  border-color: rgba(184, 138, 120, 0.25) !important;
+  box-shadow: 0 8px 32px -12px rgba(184, 138, 120, 0.25);
+  border-color: rgba(184, 138, 120, 0.3) !important;
 }
 
 .glow-lime:hover {
-  box-shadow: 0 8px 32px -8px rgba(122, 168, 122, 0.18);
-  border-color: rgba(122, 168, 122, 0.25) !important;
+  box-shadow: 0 8px 32px -12px rgba(122, 168, 122, 0.25);
+  border-color: rgba(122, 168, 122, 0.3) !important;
 }
 
 /* Fade in animation */
@@ -139,9 +163,8 @@ html {
   height: 36px !important;
   padding: 0 16px !important;
   border-radius: 16px !important;
-  background: rgba(255, 255, 255, 0.025) !important;
-  backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: #0d1017 !important;
+  border: 1px solid #1c2030 !important;
   color: #7ab8cc !important;
   text-transform: uppercase !important;
   letter-spacing: 0.05em !important;
@@ -149,25 +172,24 @@ html {
 }
 
 .wallet-adapter-button:hover {
-  background: rgba(122, 184, 204, 0.06) !important;
-  border-color: rgba(122, 184, 204, 0.3) !important;
+  background: #111520 !important;
+  border-color: #7ab8cc !important;
 }
 
 .wallet-adapter-button-trigger {
   background: transparent !important;
-  border: 1px solid rgba(122, 184, 204, 0.25) !important;
+  border: 1px solid rgba(122, 184, 204, 0.35) !important;
 }
 
 .wallet-adapter-modal-wrapper {
-  background: rgba(8, 8, 16, 0.96) !important;
-  backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  background: #0a0e14 !important;
+  border: 1px solid #1c2030 !important;
   border-radius: 16px !important;
 }
 
 .wallet-adapter-modal-title {
   font-family: var(--font-family-display) !important;
-  color: rgba(255, 255, 255, 0.88) !important;
+  color: #ebebeb !important;
   text-transform: uppercase !important;
   letter-spacing: -0.02em !important;
 }
@@ -180,11 +202,11 @@ html {
   background: #060810;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.07);
+  background: #1c2030;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: #2a3045;
 }
 
 /* Utility: easing for all transitions */

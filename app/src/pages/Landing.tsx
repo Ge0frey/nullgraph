@@ -70,7 +70,7 @@ function CodeBlock() {
         </span>
         <button
           onClick={handleCopy}
-          className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold text-text-tertiary hover:text-text-secondary hover:bg-white/5 transition-cyber uppercase tracking-wider"
+          className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold text-text-tertiary hover:text-text-secondary hover:bg-surface-raised transition-cyber uppercase tracking-wider"
         >
           <Copy className="w-3 h-3" />
           {copied ? "Copied!" : "Copy"}
@@ -190,8 +190,43 @@ export function Landing() {
     <div className="min-h-screen">
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="relative min-h-[92vh] flex items-center px-4 overflow-hidden">
+        {/* Ambient gradient washes */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_50%,rgba(122,184,204,0.06)_0%,transparent_60%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_50%,rgba(184,138,120,0.04)_0%,transparent_50%)]" />
+
+        {/* ── Animated Bio Protocol Icon Composition ────────── */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          {/* Primary — massive centered icon, slow rotation */}
+          <div
+            className="absolute top-1/2 left-1/2"
+            style={{
+              animation: "bio-rotate 120s linear infinite, bio-breathe 8s ease-in-out infinite",
+              "--breathe-min": "0.04",
+              "--breathe-max": "0.07",
+            } as React.CSSProperties}
+          >
+            <BioIcon className="w-[600px] h-[600px] sm:w-[750px] sm:h-[750px] lg:w-[850px] lg:h-[850px] text-[#7aa87a]" />
+          </div>
+
+          {/* Secondary — top-right, drifting */}
+          <div
+            className="absolute top-[8%] right-[-5%] lg:right-[2%] opacity-[0.035]"
+            style={{ animation: "bio-drift 10s ease-in-out infinite" }}
+          >
+            <BioIcon className="w-[280px] h-[280px] lg:w-[360px] lg:h-[360px] text-[#7ab8cc]" />
+          </div>
+
+          {/* Tertiary — bottom-left, counter-drift */}
+          <div
+            className="absolute bottom-[5%] left-[-8%] lg:left-[0%] opacity-[0.03]"
+            style={{ animation: "bio-drift-reverse 12s ease-in-out infinite" }}
+          >
+            <BioIcon className="w-[220px] h-[220px] lg:w-[300px] lg:h-[300px] text-[#b88a78]" />
+          </div>
+
+          {/* Radial glow behind primary icon */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] lg:w-[900px] lg:h-[900px] rounded-full bg-[radial-gradient(circle,rgba(122,168,122,0.06)_0%,transparent_65%)]" />
+        </div>
 
         <div className="relative z-10 max-w-[1120px] mx-auto w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left — Messaging */}
@@ -224,7 +259,7 @@ export function Landing() {
             <div className="flex flex-col sm:flex-row items-start gap-3 mb-8">
               <Link
                 to="/submit"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl bg-white/90 text-[#060810] text-sm font-mono font-bold uppercase tracking-wider hover:bg-white transition-cyber"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl bg-[#e8e8e8] text-[#060810] text-sm font-mono font-bold uppercase tracking-wider hover:bg-white transition-cyber"
               >
                 Submit Null Result <ArrowRight className="w-4 h-4" />
               </Link>
@@ -242,11 +277,11 @@ export function Landing() {
                 Built on
               </span>
               <div className="flex items-center gap-3">
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/[0.03] border border-border">
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface border border-border">
                   <SolanaIcon className="w-3.5 h-3.5 text-text-secondary" />
                   <span className="text-[10px] font-mono font-bold text-text-secondary uppercase tracking-wider">Solana</span>
                 </div>
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/[0.03] border border-border">
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface border border-border">
                   <BioIcon className="w-3.5 h-3.5 text-[#7aa87a]" />
                   <span className="text-[10px] font-mono font-bold text-text-secondary uppercase tracking-wider">Bio Protocol</span>
                 </div>
@@ -274,7 +309,7 @@ export function Landing() {
       </section>
 
       {/* ── Stats Strip ──────────────────────────────────────────── */}
-      <section className="border-y border-border bg-black/20 py-10 px-4">
+      <section className="border-y border-border bg-[#080c14] py-10 px-4">
         <div className="max-w-[1120px] mx-auto grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
           <div className="text-center sm:text-left">
             <p className="text-3xl sm:text-4xl font-mono font-bold text-text-primary mb-0.5">95%</p>
@@ -358,7 +393,7 @@ export function Landing() {
       </section>
 
       {/* ── Solution — 3 Pillars ─────────────────────────────────── */}
-      <section className="py-20 px-4 border-y border-border bg-black/20">
+      <section className="py-20 px-4 border-y border-border bg-[#080c14]">
         <div className="max-w-[1120px] mx-auto">
           <div className="text-center mb-12">
             <p className="text-[11px] font-mono font-bold text-neon-lime uppercase tracking-widest mb-3">
@@ -474,7 +509,7 @@ export function Landing() {
       </section>
 
       {/* ── Tech + Partners ──────────────────────────────────────── */}
-      <section className="py-10 px-4 border-y border-border bg-black/20">
+      <section className="py-10 px-4 border-y border-border bg-[#080c14]">
         <div className="max-w-[1120px] mx-auto">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-6">
@@ -482,11 +517,11 @@ export function Landing() {
                 Ecosystem
               </span>
               <div className="flex items-center gap-3">
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/[0.02] border border-border">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-surface border border-border">
                   <SolanaIcon className="w-4 h-4 text-text-secondary" />
                   <span className="text-[11px] font-mono font-semibold text-text-secondary">Solana</span>
                 </div>
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/[0.02] border border-border">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-surface border border-border">
                   <BioIcon className="w-4 h-4 text-[#7aa87a]" />
                   <span className="text-[11px] font-mono font-semibold text-text-secondary">Bio Protocol</span>
                 </div>
@@ -496,7 +531,7 @@ export function Landing() {
             <div className="flex flex-wrap items-center justify-center gap-2 text-[10px] font-mono font-bold text-text-tertiary uppercase tracking-widest">
               {["Anchor", "SPL Token", "React 19", "Vite 7", "Tailwind v4", "TypeScript"].map(
                 (tech) => (
-                  <span key={tech} className="px-3 py-1.5 rounded-lg bg-white/[0.02] border border-border">
+                  <span key={tech} className="px-3 py-1.5 rounded-lg bg-surface border border-border">
                     {tech}
                   </span>
                 )
