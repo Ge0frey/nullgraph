@@ -3,9 +3,9 @@ interface StatusDotProps {
 }
 
 const colorMap = {
-  green: "bg-[#22c55e] shadow-[0_0_4px_#22c55e]",
-  cyan: "bg-neon-cyan shadow-[0_0_4px_#00f2ff]",
-  magenta: "bg-neon-magenta shadow-[0_0_4px_#ff00e5]",
+  green: "bg-[#5a9e6e]",
+  cyan: "bg-neon-cyan",
+  magenta: "bg-neon-magenta",
 };
 
 export function StatusDot({ color = "green" }: StatusDotProps) {
