@@ -515,38 +515,6 @@ export function Landing() {
         </div>
       </section>
 
-      {/* ── Tech + Partners ──────────────────────────────────────── */}
-      <section className="py-10 px-4 border-y border-border bg-[#080c14]">
-        <div className="max-w-[1120px] mx-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-6">
-              <span className="text-[9px] font-mono font-bold text-text-tertiary uppercase tracking-widest">
-                Ecosystem
-              </span>
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-surface border border-border">
-                  <SolanaIcon className="w-4 h-4 text-text-secondary" />
-                  <span className="text-[11px] font-mono font-semibold text-text-secondary">Solana</span>
-                </div>
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-surface border border-border">
-                  <BioIcon className="w-4 h-4 text-[#62b862]" />
-                  <span className="text-[11px] font-mono font-semibold text-text-secondary">Bio Protocol</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap items-center justify-center gap-2 text-[10px] font-mono font-bold text-text-tertiary uppercase tracking-widest">
-              {["Anchor", "SPL Token", "React 19", "Vite 7", "Tailwind v4", "TypeScript"].map(
-                (tech) => (
-                  <span key={tech} className="px-3 py-1.5 rounded-lg bg-surface border border-border">
-                    {tech}
-                  </span>
-                )
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ── CTA — Multi-audience ─────────────────────────────────── */}
       <section className="py-20 px-4">
