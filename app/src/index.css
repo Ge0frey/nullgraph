@@ -3,18 +3,18 @@
 @theme {
   --color-background: #060810;
   --color-surface: #0d1017;
-  --color-surface-raised: #131720;
-  --color-border: #1c2030;
-  --color-border-hover: #2a3045;
+  --color-surface-raised: #161c2a;
+  --color-border: #232840;
+  --color-border-hover: #333b55;
 
   /* Sharp, confident accents */
-  --color-neon-cyan: #7ab8cc;
-  --color-neon-magenta: #b88a78;
-  --color-neon-lime: #7aa87a;
+  --color-neon-cyan: #5ec4de;
+  --color-neon-magenta: #c8836a;
+  --color-neon-lime: #62b862;
 
   --color-text-primary: #ebebeb;
-  --color-text-secondary: #8b8fa0;
-  --color-text-tertiary: #505468;
+  --color-text-secondary: #9ea2b5;
+  --color-text-tertiary: #5c607a;
 
   --font-family-display: "Cabinet Grotesk", "Inter", sans-serif;
   --font-family-body: "Satoshi", "Inter", sans-serif;
@@ -32,15 +32,15 @@ html {
 /* 40px grid background */
 .bg-grid {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
 /* Card — solid backgrounds, no blur */
 .glass-card {
   background: #0d1017;
-  border: 1px solid #1c2030;
+  border: 1px solid #232840;
 }
 
 .glass-card-hover {
@@ -49,8 +49,8 @@ html {
 
 .glass-card-hover:hover {
   transform: translateY(-4px);
-  border-color: #2a3045;
-  background: #111520;
+  border-color: #333b55;
+  background: #141a28;
 }
 
 /* Scanline — very subtle */
@@ -64,7 +64,7 @@ html {
   left: 0;
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(122, 184, 204, 0.08), transparent);
+  background: linear-gradient(90deg, transparent, rgba(94, 196, 222, 0.12), transparent);
   z-index: 45;
   pointer-events: none;
   animation: scanline 12s linear infinite;
@@ -72,7 +72,7 @@ html {
 
 /* Scroll progress bar */
 .scroll-progress {
-  background: #7ab8cc;
+  background: #5ec4de;
 }
 
 /* Noise overlay texture — extremely faint */
@@ -136,18 +136,18 @@ html {
 
 /* Card hover lift with accent */
 .glow-cyan:hover {
-  box-shadow: 0 8px 32px -12px rgba(122, 184, 204, 0.25);
-  border-color: rgba(122, 184, 204, 0.3) !important;
+  box-shadow: 0 8px 32px -12px rgba(94, 196, 222, 0.3);
+  border-color: rgba(94, 196, 222, 0.35) !important;
 }
 
 .glow-magenta:hover {
-  box-shadow: 0 8px 32px -12px rgba(184, 138, 120, 0.25);
-  border-color: rgba(184, 138, 120, 0.3) !important;
+  box-shadow: 0 8px 32px -12px rgba(200, 131, 106, 0.3);
+  border-color: rgba(200, 131, 106, 0.35) !important;
 }
 
 .glow-lime:hover {
-  box-shadow: 0 8px 32px -12px rgba(122, 168, 122, 0.25);
-  border-color: rgba(122, 168, 122, 0.3) !important;
+  box-shadow: 0 8px 32px -12px rgba(98, 184, 98, 0.3);
+  border-color: rgba(98, 184, 98, 0.35) !important;
 }
 
 /* Fade in animation */
@@ -164,26 +164,26 @@ html {
   padding: 0 16px !important;
   border-radius: 16px !important;
   background: #0d1017 !important;
-  border: 1px solid #1c2030 !important;
-  color: #7ab8cc !important;
+  border: 1px solid #232840 !important;
+  color: #5ec4de !important;
   text-transform: uppercase !important;
   letter-spacing: 0.05em !important;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .wallet-adapter-button:hover {
-  background: #111520 !important;
-  border-color: #7ab8cc !important;
+  background: #141a28 !important;
+  border-color: #5ec4de !important;
 }
 
 .wallet-adapter-button-trigger {
   background: transparent !important;
-  border: 1px solid rgba(122, 184, 204, 0.35) !important;
+  border: 1px solid rgba(94, 196, 222, 0.35) !important;
 }
 
 .wallet-adapter-modal-wrapper {
   background: #0a0e14 !important;
-  border: 1px solid #1c2030 !important;
+  border: 1px solid #232840 !important;
   border-radius: 16px !important;
 }
 
@@ -202,11 +202,11 @@ html {
   background: #060810;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1c2030;
+  background: #232840;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2a3045;
+  background: #333b55;
 }
 
 /* Utility: easing for all transitions */

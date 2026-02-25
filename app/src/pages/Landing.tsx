@@ -191,8 +191,8 @@ export function Landing() {
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="relative min-h-[92vh] flex items-center px-4 overflow-hidden">
         {/* Ambient gradient washes */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_50%,rgba(122,184,204,0.06)_0%,transparent_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_50%,rgba(184,138,120,0.04)_0%,transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_50%,rgba(94,196,222,0.08)_0%,transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_50%,rgba(200,131,106,0.06)_0%,transparent_50%)]" />
 
         {/* ── Animated Bio Protocol Icon Composition ────────── */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -201,38 +201,45 @@ export function Landing() {
             className="absolute top-1/2 left-1/2"
             style={{
               animation: "bio-rotate 120s linear infinite, bio-breathe 8s ease-in-out infinite",
-              "--breathe-min": "0.04",
-              "--breathe-max": "0.07",
+              "--breathe-min": "0.07",
+              "--breathe-max": "0.14",
+              filter: "drop-shadow(0 0 40px rgba(98, 184, 98, 0.35))",
             } as React.CSSProperties}
           >
-            <BioIcon className="w-[600px] h-[600px] sm:w-[750px] sm:h-[750px] lg:w-[850px] lg:h-[850px] text-[#7aa87a]" />
+            <BioIcon className="w-[600px] h-[600px] sm:w-[750px] sm:h-[750px] lg:w-[850px] lg:h-[850px] text-[#62b862]" />
           </div>
 
           {/* Secondary — top-right, drifting */}
           <div
-            className="absolute top-[8%] right-[-5%] lg:right-[2%] opacity-[0.035]"
-            style={{ animation: "bio-drift 10s ease-in-out infinite" }}
+            className="absolute top-[8%] right-[-5%] lg:right-[2%] opacity-[0.09]"
+            style={{
+              animation: "bio-drift 10s ease-in-out infinite",
+              filter: "drop-shadow(0 0 30px rgba(94, 196, 222, 0.4))",
+            }}
           >
-            <BioIcon className="w-[280px] h-[280px] lg:w-[360px] lg:h-[360px] text-[#7ab8cc]" />
+            <BioIcon className="w-[280px] h-[280px] lg:w-[360px] lg:h-[360px] text-[#5ec4de]" />
           </div>
 
           {/* Tertiary — bottom-left, counter-drift */}
           <div
-            className="absolute bottom-[5%] left-[-8%] lg:left-[0%] opacity-[0.03]"
-            style={{ animation: "bio-drift-reverse 12s ease-in-out infinite" }}
+            className="absolute bottom-[5%] left-[-8%] lg:left-[0%] opacity-[0.07]"
+            style={{
+              animation: "bio-drift-reverse 12s ease-in-out infinite",
+              filter: "drop-shadow(0 0 30px rgba(200, 131, 106, 0.4))",
+            }}
           >
-            <BioIcon className="w-[220px] h-[220px] lg:w-[300px] lg:h-[300px] text-[#b88a78]" />
+            <BioIcon className="w-[220px] h-[220px] lg:w-[300px] lg:h-[300px] text-[#c8836a]" />
           </div>
 
           {/* Radial glow behind primary icon */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] lg:w-[900px] lg:h-[900px] rounded-full bg-[radial-gradient(circle,rgba(122,168,122,0.06)_0%,transparent_65%)]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] lg:w-[900px] lg:h-[900px] rounded-full bg-[radial-gradient(circle,rgba(98,184,98,0.08)_0%,transparent_65%)]" />
         </div>
 
         <div className="relative z-10 max-w-[1120px] mx-auto w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left — Messaging */}
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 glass-card rounded-full mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#5a9e6e] pulse-dot" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#52b86a] pulse-dot" />
               <span className="text-[10px] font-mono font-bold text-text-tertiary uppercase tracking-widest">
                 Live on Devnet
               </span>
@@ -282,7 +289,7 @@ export function Landing() {
                   <span className="text-[10px] font-mono font-bold text-text-secondary uppercase tracking-wider">Solana</span>
                 </div>
                 <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface border border-border">
-                  <BioIcon className="w-3.5 h-3.5 text-[#7aa87a]" />
+                  <BioIcon className="w-3.5 h-3.5 text-[#62b862]" />
                   <span className="text-[10px] font-mono font-bold text-text-secondary uppercase tracking-wider">Bio Protocol</span>
                 </div>
               </div>
@@ -293,7 +300,7 @@ export function Landing() {
           <div className="hidden lg:block">
             <div className="relative">
               {/* Subtle background glow behind the terminal */}
-              <div className="absolute -inset-8 bg-[radial-gradient(ellipse_at_center,rgba(122,184,204,0.04)_0%,transparent_70%)] rounded-3xl" />
+              <div className="absolute -inset-8 bg-[radial-gradient(ellipse_at_center,rgba(94,196,222,0.06)_0%,transparent_70%)] rounded-3xl" />
               <div className="relative">
                 <CodeBlock />
                 <div className="flex items-center gap-2 mt-3 px-1">
@@ -522,7 +529,7 @@ export function Landing() {
                   <span className="text-[11px] font-mono font-semibold text-text-secondary">Solana</span>
                 </div>
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-surface border border-border">
-                  <BioIcon className="w-4 h-4 text-[#7aa87a]" />
+                  <BioIcon className="w-4 h-4 text-[#62b862]" />
                   <span className="text-[11px] font-mono font-semibold text-text-secondary">Bio Protocol</span>
                 </div>
               </div>
