@@ -40,8 +40,8 @@ export function Navbar() {
         <div className="glass-card rounded-2xl px-4 sm:px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-5">
             <Link to="/" className="flex items-center gap-2.5">
-              <div className="w-7 h-7 rounded-lg bg-white flex items-center justify-center">
-                <Shield className="w-4 h-4 text-[#050505]" />
+              <div className="w-7 h-7 rounded-lg bg-white/10 border border-border flex items-center justify-center">
+                <Shield className="w-4 h-4 text-neon-cyan" />
               </div>
               <span className="font-display font-black text-base tracking-tight text-text-primary uppercase">
                 Null<span className="text-neon-cyan">Graph</span>
