@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { WalletButton } from "../wallet/WalletButton";
 import { StatusDot } from "../ui/StatusDot";
-import { Shield } from "lucide-react";
+
 
 const NAV_LINKS = [
   { to: "/dashboard", label: "Dashboard" },
@@ -41,7 +41,7 @@ export function Navbar() {
           <div className="flex items-center gap-5">
             <Link to="/" className="flex items-center gap-2.5">
               <div className="w-7 h-7 rounded-lg bg-white/10 border border-border flex items-center justify-center">
-                <Shield className="w-4 h-4 text-neon-cyan" />
+                <span className="text-sm font-bold text-neon-cyan leading-none">∅</span>
               </div>
               <span className="font-display font-black text-base tracking-tight text-text-primary uppercase">
                 Null<span className="text-neon-cyan">Graph</span>

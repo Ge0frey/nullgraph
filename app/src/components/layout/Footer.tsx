@@ -1,4 +1,4 @@
-import { Shield } from "lucide-react";
+
 
 export function Footer() {
   return (
@@ -6,7 +6,7 @@ export function Footer() {
       <div className="max-w-[1120px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2.5">
           <div className="w-5 h-5 rounded bg-white/10 flex items-center justify-center">
-            <Shield className="w-3 h-3 text-neon-cyan" />
+            <span className="text-xs font-bold text-neon-cyan leading-none">∅</span>
           </div>
           <span className="font-display font-black text-sm text-text-secondary uppercase tracking-tight">
             Null<span className="text-neon-cyan">Graph</span>
