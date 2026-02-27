@@ -331,7 +331,7 @@ export function Landing() {
             <p className="text-[10px] font-mono font-bold uppercase tracking-widest text-neon-lime">Verifiable On-Chain</p>
           </div>
           <div className="text-center sm:text-left">
-            <p className="text-3xl sm:text-4xl font-mono font-bold text-text-primary mb-0.5">USDC</p>
+            <p className="text-3xl sm:text-4xl font-mono font-bold text-text-primary mb-0.5">BIO</p>
             <p className="text-[10px] font-mono font-bold uppercase tracking-widest text-neon-cyan">Bounty Rewards</p>
           </div>
         </div>
@@ -454,7 +454,7 @@ export function Landing() {
               </p>
               <div className="flex items-center gap-2 mt-5 pt-4 border-t border-border">
                 <CheckCircle className="w-3.5 h-3.5 text-neon-lime" />
-                <span className="text-[10px] font-mono text-text-tertiary">USDC-denominated rewards</span>
+                <span className="text-[10px] font-mono text-text-tertiary">BIO-denominated rewards</span>
               </div>
             </div>
           </div>
@@ -484,7 +484,7 @@ export function Landing() {
                 { step: "02", icon: Layers, title: "Submit", desc: "Fill a 4-step form to mint your NKA on-chain." },
                 { step: "03", icon: Search, title: "Browse", desc: "Anyone can search the registry of published results." },
                 { step: "04", icon: Zap, title: "Bounty", desc: "BioDAOs post bounties for specific null results." },
-                { step: "05", icon: CheckCircle, title: "Earn", desc: "Link your NKA to a bounty and earn USDC." },
+                { step: "05", icon: CheckCircle, title: "Earn", desc: "Link your NKA to a bounty and earn BIO." },
               ].map((item) => (
                 <div key={item.step} className="glass-card glass-card-hover rounded-2xl p-5 text-center relative">
                   <div className="w-8 h-8 rounded-full glass-card flex items-center justify-center mx-auto mb-3 border border-border">

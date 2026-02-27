@@ -12,11 +12,11 @@ interface CreateBountyFormProps {
 export function CreateBountyForm({ onSuccess }: CreateBountyFormProps) {
   const { create, loading } = useCreateBounty();
   const [description, setDescription] = useState("");
-  const [rewardUsdc, setRewardUsdc] = useState("");
+  const [rewardBio, setRewardBio] = useState("");
   const [deadlineDays, setDeadlineDays] = useState("7");
 
   const handleSubmit = async () => {
-    const rewardAmount = Math.round(parseFloat(rewardUsdc) * 1_000_000);
+    const rewardAmount = Math.round(parseFloat(rewardBio) * 1_000_000);
     const deadline = Math.floor(Date.now() / 1000) + parseInt(deadlineDays, 10) * 86400;
 
     const result = await create({
@@ -30,7 +30,7 @@ export function CreateBountyForm({ onSuccess }: CreateBountyFormProps) {
     }
   };
 
-  const valid = description.trim().length > 0 && parseFloat(rewardUsdc) > 0;
+  const valid = description.trim().length > 0 && parseFloat(rewardBio) > 0;
 
   return (
     <div className="flex flex-col gap-4">
@@ -48,11 +48,11 @@ export function CreateBountyForm({ onSuccess }: CreateBountyFormProps) {
 
       <div className="grid grid-cols-2 gap-4">
         <Input
-          label="Reward (USDC)"
+          label="Reward (BIO)"
           type="number"
           placeholder="e.g., 10.00"
-          value={rewardUsdc}
-          onChange={(e) => setRewardUsdc(e.target.value)}
+          value={rewardBio}
+          onChange={(e) => setRewardBio(e.target.value)}
           min="0.01"
           step="0.01"
         />
@@ -73,7 +73,7 @@ export function CreateBountyForm({ onSuccess }: CreateBountyFormProps) {
         disabled={!valid || loading}
         className="w-full mt-2"
       >
-        Deposit USDC & Create Bounty
+        Deposit BIO & Create Bounty
       </Button>
     </div>
   );

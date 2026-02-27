@@ -5,12 +5,12 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { BN } from "@coral-xyz/anchor";
 import { useProgram } from "../context/ProgramContext";
 import { findProtocolStatePDA, findBountyPDA, findVaultPDA } from "../lib/pda";
-import { DEVNET_USDC_MINT } from "../lib/constants";
+import { BIO_MINT } from "../lib/constants";
 import { useToast } from "../components/ui/Toast";
 
 interface CreateBountyArgs {
   description: number[];
-  rewardAmount: number; // in USDC (6 decimals)
+  rewardAmount: number; // in BIO (6 decimals)
   deadline: number; // Unix timestamp
 }
 
@@ -35,7 +35,7 @@ export function useCreateBounty() {
         const [bountyPDA] = findBountyPDA(publicKey, nextBounty);
         const [vaultPDA] = findVaultPDA(bountyPDA);
         const creatorUsdcAta = await getAssociatedTokenAddress(
-          DEVNET_USDC_MINT,
+          BIO_MINT,
           publicKey
         );
 
@@ -53,7 +53,7 @@ export function useCreateBounty() {
             bounty: bountyPDA,
             vault: vaultPDA,
             creatorUsdcAta,
-            usdcMint: DEVNET_USDC_MINT,
+            usdcMint: BIO_MINT,
             tokenProgram: TOKEN_PROGRAM_ID,
             associatedTokenProgram: ASSOCIATED_TOKEN_PROGRAM_ID,
             systemProgram: SystemProgram.programId,

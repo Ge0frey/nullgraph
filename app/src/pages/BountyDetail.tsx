@@ -17,7 +17,7 @@ import { useCloseBounty } from "../hooks/useCloseBounty";
 import {
   decodeString,
   formatBountyNumber,
-  formatUSDC,
+  formatBIO,
   formatDate,
   formatSpecimenNumber,
   getBountyStatusLabel,
@@ -116,7 +116,7 @@ export function BountyDetail() {
           </p>
           <div className="flex items-center gap-5 text-xs font-mono">
             <span className="text-neon-lime font-bold">
-              {formatUSDC(bounty.rewardAmount.toNumber())} USDC
+              {formatBIO(bounty.rewardAmount.toNumber())} BIO
             </span>
             <span className="text-text-tertiary font-bold uppercase tracking-widest">
               Deadline: {formatDate(bounty.deadline.toNumber())}

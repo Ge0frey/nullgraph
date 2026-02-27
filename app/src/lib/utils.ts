@@ -23,8 +23,8 @@ export function formatBountyNumber(n: number): string {
   return `NB-${String(n).padStart(4, "0")}`;
 }
 
-/** Format USDC amount (6 decimals) to human-readable. */
-export function formatUSDC(lamports: number): string {
+/** Format BIO token amount (6 decimals) to human-readable. */
+export function formatBIO(lamports: number): string {
   return (lamports / 1_000_000).toFixed(2);
 }
 

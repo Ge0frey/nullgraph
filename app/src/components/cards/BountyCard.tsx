@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Badge } from "../ui/Badge";
 import { SpecimenTag } from "../ui/SpecimenTag";
 import type { NullBountyWithKey } from "../../types";
-import { decodeString, formatBountyNumber, formatUSDC, formatDate, getBountyStatusLabel } from "../../lib/utils";
+import { decodeString, formatBountyNumber, formatBIO, formatDate, getBountyStatusLabel } from "../../lib/utils";
 
 interface BountyCardProps {
   bounty: NullBountyWithKey;
@@ -27,7 +27,7 @@ export function BountyCard({ bounty }: BountyCardProps) {
       </p>
       <div className="flex items-center justify-between">
         <span className="text-sm font-mono font-bold text-neon-lime">
-          {formatUSDC(bounty.rewardAmount.toNumber())} USDC
+          {formatBIO(bounty.rewardAmount.toNumber())} BIO
         </span>
         <span className="text-[10px] font-mono font-bold text-text-tertiary uppercase tracking-widest">
           {formatDate(bounty.deadline.toNumber())}

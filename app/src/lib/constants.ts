@@ -5,8 +5,8 @@ export const PROGRAM_ID = new PublicKey(
     "2u3DXQq9A6UgMryeVSWCNdYLy3Fjh391R5hcfWYkCgZK"
 );
 
-export const DEVNET_USDC_MINT = new PublicKey(
-  "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU"
+export const BIO_MINT = new PublicKey(
+  "GkjGV1ZF5BsMs6oAvk8jZiuXM8KwuygFCHLBpqR5Q14j"
 );
 
 export const RPC_URL =

@@ -3,7 +3,7 @@ import { TOKEN_PROGRAM_ID, getAssociatedTokenAddress } from "@solana/spl-token";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useProgram } from "../context/ProgramContext";
 import { findVaultPDA } from "../lib/pda";
-import { DEVNET_USDC_MINT } from "../lib/constants";
+import { BIO_MINT } from "../lib/constants";
 import { useToast } from "../components/ui/Toast";
 import type { NullBountyWithKey } from "../types";
 
@@ -24,7 +24,7 @@ export function useCloseBounty() {
       try {
         const [vaultPDA] = findVaultPDA(bounty.publicKey);
         const creatorUsdcAta = await getAssociatedTokenAddress(
-          DEVNET_USDC_MINT,
+          BIO_MINT,
           publicKey
         );
 
@@ -37,12 +37,12 @@ export function useCloseBounty() {
             bounty: bounty.publicKey,
             vault: vaultPDA,
             creatorUsdcAta,
-            usdcMint: DEVNET_USDC_MINT,
+            usdcMint: BIO_MINT,
             tokenProgram: TOKEN_PROGRAM_ID,
           })
           .rpc();
 
-        toast("success", "Bounty closed! USDC refunded.", tx);
+        toast("success", "Bounty closed! BIO refunded.", tx);
         return true;
       } catch (err: unknown) {
         const msg = err instanceof Error ? err.message : "Transaction failed";

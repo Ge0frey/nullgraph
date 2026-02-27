@@ -9,7 +9,7 @@ import {
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useProgram } from "../context/ProgramContext";
 import { findProtocolStatePDA, findVaultPDA } from "../lib/pda";
-import { DEVNET_USDC_MINT } from "../lib/constants";
+import { BIO_MINT } from "../lib/constants";
 import { useToast } from "../components/ui/Toast";
 import type { NullBountyWithKey, BountySubmissionWithKey } from "../types";
 
@@ -36,15 +36,15 @@ export function useApproveBountySubmission() {
         const protocol = await program.account.protocolState.fetch(protocolStatePDA);
 
         const researcherUsdcAta = await getAssociatedTokenAddress(
-          DEVNET_USDC_MINT,
+          BIO_MINT,
           submission.researcher
         );
         const treasuryUsdcAta = await getAssociatedTokenAddress(
-          DEVNET_USDC_MINT,
+          BIO_MINT,
           protocol.treasury
         );
 
-        // Create ATAs if they don't exist yet (researcher/treasury may never have held USDC)
+        // Create ATAs if they don't exist yet (researcher/treasury may never have held BIO)
         const preInstructions = [];
         const connection = program.provider.connection;
 
@@ -59,7 +59,7 @@ export function useApproveBountySubmission() {
               publicKey,
               researcherUsdcAta,
               submission.researcher,
-              DEVNET_USDC_MINT
+              BIO_MINT
             )
           );
         }
@@ -69,7 +69,7 @@ export function useApproveBountySubmission() {
               publicKey,
               treasuryUsdcAta,
               protocol.treasury,
-              DEVNET_USDC_MINT
+              BIO_MINT
             )
           );
         }
@@ -87,13 +87,13 @@ export function useApproveBountySubmission() {
             researcherUsdcAta,
             treasuryUsdcAta,
             protocolState: protocolStatePDA,
-            usdcMint: DEVNET_USDC_MINT,
+            usdcMint: BIO_MINT,
             tokenProgram: TOKEN_PROGRAM_ID,
           })
           .preInstructions(preInstructions)
           .rpc();
 
-        toast("success", "Bounty approved! USDC transferred.", tx);
+        toast("success", "Bounty approved! BIO transferred.", tx);
         return true;
       } catch (err: unknown) {
         const msg = err instanceof Error ? err.message : "Transaction failed";
