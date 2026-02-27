@@ -16,7 +16,7 @@ import {
   Terminal,
   Copy,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect, type ReactNode } from "react";
 
 /* ── Inline Bio Protocol Icon (light green, simplified) ────────────── */
 function BioIcon({ className = "w-6 h-6" }: { className?: string }) {
@@ -185,7 +185,56 @@ function Line({
 
 /* ═══════════════════════════════════════════════════════════════════ */
 
+/* ── Scroll-triggered animation helpers ────────────────────────── */
+function useInView(threshold = 0.15) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setInView(true);
+          obs.unobserve(el);
+        }
+      },
+      { threshold }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return [ref, inView] as const;
+}
+
+function AnimateIn({
+  children,
+  className = "",
+  delay = 0,
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+}) {
+  const [ref, inView] = useInView(0.1);
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-700 ease-out ${
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+      } ${className}`}
+      style={{ transitionDelay: inView ? `${delay}ms` : "0ms" }}
+    >
+      {children}
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════ */
+
 export function Landing() {
+  const [timelineRef, timelineInView] = useInView(0.2);
+
   return (
     <div className="min-h-screen">
       {/* ── Hero ─────────────────────────────────────────────────── */}
@@ -400,101 +449,110 @@ export function Landing() {
       </section>
 
       {/* ── Solution — 3 Pillars ─────────────────────────────────── */}
-      <section>
+      <section className="py-24 px-4">
         <div className="max-w-[1120px] mx-auto">
-          <div className="text-center mb-12">
+          <AnimateIn className="text-center mb-14">
             <p className="text-[11px] font-mono font-bold text-neon-lime uppercase tracking-widest mb-3">
               The Solution
             </p>
             <h2 className="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight text-text-primary">
               On-Chain Null Knowledge Assets
             </h2>
-          </div>
+          </AnimateIn>
 
-          <div className="grid sm:grid-cols-3 gap-4">
-            <div className="glass-card glass-card-hover glow-cyan rounded-2xl p-7 flex flex-col">
-              <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-5 bg-neon-cyan/8 border border-neon-cyan/15">
-                <Database className="w-5 h-5 text-neon-cyan" />
-              </div>
-              <h3 className="font-display font-black text-sm uppercase tracking-tight mb-2 text-text-primary">
-                Tokenize
-              </h3>
-              <p className="text-xs text-text-secondary leading-relaxed mb-auto">
-                Turn null results into permanent, verifiable NKAs on Solana with full metadata.
-              </p>
-              <div className="flex items-center gap-2 mt-5 pt-4 border-t border-border">
-                <CheckCircle className="w-3.5 h-3.5 text-neon-cyan" />
-                <span className="text-[10px] font-mono text-text-tertiary">Immutable on-chain record</span>
-              </div>
-            </div>
-            <div className="glass-card glass-card-hover glow-magenta rounded-2xl p-7 flex flex-col">
-              <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-5 bg-neon-magenta/8 border border-neon-magenta/15">
-                <Shield className="w-5 h-5 text-neon-magenta" />
-              </div>
-              <h3 className="font-display font-black text-sm uppercase tracking-tight mb-2 text-text-primary">
-                Verify
-              </h3>
-              <p className="text-xs text-text-secondary leading-relaxed mb-auto">
-                Community-driven verification builds trust in negative findings.
-              </p>
-              <div className="flex items-center gap-2 mt-5 pt-4 border-t border-border">
-                <CheckCircle className="w-3.5 h-3.5 text-neon-magenta" />
-                <span className="text-[10px] font-mono text-text-tertiary">Peer attestation system</span>
-              </div>
-            </div>
-            <div className="glass-card glass-card-hover glow-lime rounded-2xl p-7 flex flex-col">
-              <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-5 bg-neon-lime/8 border border-neon-lime/15">
-                <DollarSign className="w-5 h-5 text-neon-lime" />
-              </div>
-              <h3 className="font-display font-black text-sm uppercase tracking-tight mb-2 text-text-primary">
-                Monetize
-              </h3>
-              <p className="text-xs text-text-secondary leading-relaxed mb-auto">
-                Bounty marketplace lets BioDAOs pay for the null results they need.
-              </p>
-              <div className="flex items-center gap-2 mt-5 pt-4 border-t border-border">
-                <CheckCircle className="w-3.5 h-3.5 text-neon-lime" />
-                <span className="text-[10px] font-mono text-text-tertiary">BIO-denominated rewards</span>
-              </div>
-            </div>
+          <div className="grid sm:grid-cols-3 gap-5">
+            {[
+              { num: "01", Icon: Database, title: "Tokenize", desc: "Turn null results into permanent, verifiable NKAs on Solana with full metadata.", check: "Immutable on-chain record", color: "#5ec4de", glow: "glow-cyan" },
+              { num: "02", Icon: Shield, title: "Verify", desc: "Community-driven verification builds trust in negative findings.", check: "Peer attestation system", color: "#c8836a", glow: "glow-magenta" },
+              { num: "03", Icon: DollarSign, title: "Monetize", desc: "Bounty marketplace lets BioDAOs pay for the null results they need.", check: "BIO-denominated rewards", color: "#62b862", glow: "glow-lime" },
+            ].map((item, i) => (
+              <AnimateIn key={item.num} delay={i * 150}>
+                <div className={`group relative glass-card glass-card-hover ${item.glow} rounded-2xl p-7 flex flex-col overflow-hidden h-full`}>
+                  {/* Accent gradient line at top */}
+                  <div
+                    className="absolute top-0 inset-x-0 h-px opacity-40 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{ background: `linear-gradient(90deg, transparent, ${item.color}, transparent)` }}
+                  />
+                  {/* Large faded background number */}
+                  <span className="absolute -top-3 -right-1 text-[100px] font-display font-black text-white/[0.025] leading-none select-none pointer-events-none">
+                    {item.num}
+                  </span>
+
+                  <div
+                    className="w-14 h-14 rounded-2xl border flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500"
+                    style={{ backgroundColor: `${item.color}12`, borderColor: `${item.color}25` }}
+                  >
+                    <item.Icon className="w-6 h-6" style={{ color: item.color }} />
+                  </div>
+                  <h3 className="font-display font-black text-lg uppercase tracking-tight mb-2 text-text-primary">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-text-secondary leading-relaxed mb-auto">
+                    {item.desc}
+                  </p>
+                  <div className="flex items-center gap-2 mt-6 pt-4 border-t border-border">
+                    <CheckCircle className="w-3.5 h-3.5" style={{ color: item.color }} />
+                    <span className="text-[10px] font-mono text-text-tertiary">{item.check}</span>
+                  </div>
+                </div>
+              </AnimateIn>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── How It Works — Timeline ──────────────────────────────── */}
-      <section className="py-20 px-4">
+      {/* ── How It Works — Animated Timeline ─────────────────────── */}
+      <section className="py-24 px-4">
         <div className="max-w-[1120px] mx-auto">
-          <div className="text-center mb-12">
+          <AnimateIn className="text-center mb-16">
             <p className="text-[11px] font-mono font-bold text-neon-cyan uppercase tracking-widest mb-3">
               How It Works
             </p>
             <h2 className="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight text-text-primary">
               5 steps. Experiment to asset.
             </h2>
-          </div>
+          </AnimateIn>
 
-          {/* Desktop: horizontal steps connected by a line */}
-          <div className="relative">
-            {/* Connection line */}
-            <div className="hidden sm:block absolute top-[2.25rem] left-[10%] right-[10%] h-px bg-border" />
+          <div ref={timelineRef} className="relative">
+            {/* Animated gradient connecting line — desktop */}
+            <div className="hidden sm:block absolute top-6 left-[10%] right-[10%] h-px bg-border overflow-hidden">
+              <div
+                className={`h-full bg-gradient-to-r from-[#5ec4de] via-[#c8836a] to-[#62b862] transition-all ease-out ${
+                  timelineInView ? "w-full duration-[1.8s]" : "w-0 duration-0"
+                }`}
+              />
+            </div>
 
-            <div className="grid sm:grid-cols-5 gap-4">
+            <div className="grid sm:grid-cols-5 gap-8 sm:gap-4">
               {[
-                { step: "01", icon: FlaskConical, title: "Experiment", desc: "Run your experiment and observe a null result." },
-                { step: "02", icon: Layers, title: "Submit", desc: "Fill a 4-step form to mint your NKA on-chain." },
-                { step: "03", icon: Search, title: "Browse", desc: "Anyone can search the registry of published results." },
-                { step: "04", icon: Zap, title: "Bounty", desc: "BioDAOs post bounties for specific null results." },
-                { step: "05", icon: CheckCircle, title: "Earn", desc: "Link your NKA to a bounty and earn BIO." },
-              ].map((item) => (
-                <div key={item.step} className="glass-card glass-card-hover rounded-2xl p-5 text-center relative">
-                  <div className="w-8 h-8 rounded-full glass-card flex items-center justify-center mx-auto mb-3 border border-border">
-                    <span className="text-[10px] font-mono font-bold text-neon-cyan tracking-widest">{item.step}</span>
+                { num: "01", Icon: FlaskConical, title: "Experiment", desc: "Run your experiment and observe a null result." },
+                { num: "02", Icon: Layers, title: "Submit", desc: "Fill a 4-step form to mint your NKA on-chain." },
+                { num: "03", Icon: Search, title: "Browse", desc: "Anyone can search the registry of published results." },
+                { num: "04", Icon: Zap, title: "Bounty", desc: "BioDAOs post bounties for specific null results." },
+                { num: "05", Icon: CheckCircle, title: "Earn", desc: "Link your NKA to a bounty and earn BIO." },
+              ].map((step, i) => (
+                <div
+                  key={step.num}
+                  className={`text-center transition-all duration-700 ease-out ${
+                    timelineInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                  }`}
+                  style={{ transitionDelay: timelineInView ? `${400 + i * 200}ms` : "0ms" }}
+                >
+                  {/* Node on the timeline */}
+                  <div className="relative z-10 mx-auto mb-5">
+                    <div className="w-12 h-12 rounded-full bg-background border-2 border-[#5ec4de]/30 flex items-center justify-center mx-auto hover:border-[#5ec4de] hover:shadow-[0_0_15px_rgba(94,196,222,0.25)] transition-all duration-300">
+                      <span className="text-xs font-mono font-bold text-neon-cyan">{step.num}</span>
+                    </div>
                   </div>
-                  <item.icon className="w-4 h-4 text-text-tertiary mx-auto mb-2" />
-                  <h3 className="font-display font-black text-xs uppercase tracking-tight mb-1 text-text-primary">
-                    {item.title}
-                  </h3>
-                  <p className="text-[11px] text-text-tertiary leading-relaxed">{item.desc}</p>
+
+                  {/* Step content card */}
+                  <div className="glass-card glass-card-hover rounded-2xl p-5">
+                    <step.Icon className="w-5 h-5 text-text-tertiary mx-auto mb-3" />
+                    <h3 className="font-display font-black text-sm uppercase tracking-tight mb-1.5 text-text-primary">
+                      {step.title}
+                    </h3>
+                    <p className="text-[11px] text-text-tertiary leading-relaxed">{step.desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -517,69 +575,50 @@ export function Landing() {
 
 
       {/* ── CTA — Multi-audience ─────────────────────────────────── */}
-      <section className="py-20 px-4">
+      <section className="py-24 px-4">
         <div className="max-w-[1120px] mx-auto">
-          <div className="text-center mb-12">
+          <AnimateIn className="text-center mb-14">
             <h2 className="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight text-text-primary mb-3">
               Get Started
             </h2>
             <p className="text-sm text-text-secondary max-w-md mx-auto">
               Whether you're a researcher, a BioDAO, or just curious — there's a place for you.
             </p>
-          </div>
+          </AnimateIn>
 
-          <div className="grid sm:grid-cols-3 gap-4">
-            <div className="glass-card glass-card-hover glow-cyan rounded-2xl p-7 text-center">
-              <p className="text-[10px] font-mono font-bold text-neon-cyan uppercase tracking-widest mb-3">
-                Researchers
-              </p>
-              <h3 className="font-display font-black text-base uppercase tracking-tight mb-2 text-text-primary">
-                Publish null results
-              </h3>
-              <p className="text-xs text-text-secondary mb-5 leading-relaxed">
-                Turn negative findings into permanent on-chain knowledge assets.
-              </p>
-              <Link
-                to="/submit"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl text-xs font-mono font-bold uppercase tracking-wider transition-cyber border border-neon-cyan/25 text-neon-cyan hover:bg-neon-cyan/8 hover:border-neon-cyan/40"
-              >
-                Submit NKA <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-            <div className="glass-card glass-card-hover glow-magenta rounded-2xl p-7 text-center">
-              <p className="text-[10px] font-mono font-bold text-neon-magenta uppercase tracking-widest mb-3">
-                BioDAOs
-              </p>
-              <h3 className="font-display font-black text-base uppercase tracking-tight mb-2 text-text-primary">
-                Fund open science
-              </h3>
-              <p className="text-xs text-text-secondary mb-5 leading-relaxed">
-                Post bounties for specific null results and fund real research.
-              </p>
-              <Link
-                to="/market"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl text-xs font-mono font-bold uppercase tracking-wider transition-cyber border border-neon-magenta/25 text-neon-magenta hover:bg-neon-magenta/8 hover:border-neon-magenta/40"
-              >
-                Create Bounty <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-            <div className="glass-card glass-card-hover glow-lime rounded-2xl p-7 text-center">
-              <p className="text-[10px] font-mono font-bold text-neon-lime uppercase tracking-widest mb-3">
-                Everyone
-              </p>
-              <h3 className="font-display font-black text-base uppercase tracking-tight mb-2 text-text-primary">
-                Explore the registry
-              </h3>
-              <p className="text-xs text-text-secondary mb-5 leading-relaxed">
-                The world's first open database of verified null results.
-              </p>
-              <Link
-                to="/dashboard"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl text-xs font-mono font-bold uppercase tracking-wider transition-cyber border border-neon-lime/25 text-neon-lime hover:bg-neon-lime/8 hover:border-neon-lime/40"
-              >
-                View Dashboard <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
+          <div className="grid sm:grid-cols-3 gap-5">
+            {[
+              { audience: "Researchers", title: "Publish null results", desc: "Turn negative findings into permanent on-chain knowledge assets.", link: "/submit", cta: "Submit NKA", color: "#5ec4de", glow: "glow-cyan" },
+              { audience: "BioDAOs", title: "Fund open science", desc: "Post bounties for specific null results and fund real research.", link: "/market", cta: "Create Bounty", color: "#c8836a", glow: "glow-magenta" },
+              { audience: "Everyone", title: "Explore the registry", desc: "The world's first open database of verified null results.", link: "/dashboard", cta: "View Dashboard", color: "#62b862", glow: "glow-lime" },
+            ].map((item, i) => (
+              <AnimateIn key={item.audience} delay={i * 150}>
+                <div className={`group relative glass-card glass-card-hover ${item.glow} rounded-2xl p-8 text-center overflow-hidden h-full flex flex-col`}>
+                  {/* Hover glow orb */}
+                  <div
+                    className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                    style={{ background: `radial-gradient(circle, ${item.color}15 0%, transparent 70%)` }}
+                  />
+
+                  <p className="text-[10px] font-mono font-bold uppercase tracking-widest mb-4 relative" style={{ color: item.color }}>
+                    {item.audience}
+                  </p>
+                  <h3 className="font-display font-black text-lg uppercase tracking-tight mb-3 text-text-primary relative">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-text-secondary mb-6 leading-relaxed relative flex-1">
+                    {item.desc}
+                  </p>
+                  <Link
+                    to={item.link}
+                    className="relative inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-2xl text-xs font-mono font-bold uppercase tracking-wider transition-cyber border hover:bg-white/[0.04]"
+                    style={{ borderColor: `${item.color}40`, color: item.color }}
+                  >
+                    {item.cta} <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </AnimateIn>
+            ))}
           </div>
         </div>
       </section>
