@@ -316,7 +316,7 @@ export function Landing() {
       </section>
 
       {/* ── Stats Strip ──────────────────────────────────────────── */}
-      <section className="border-y border-border bg-[#080c14] py-10 px-4">
+      <section>
         <div className="max-w-[1120px] mx-auto grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
           <div className="text-center sm:text-left">
             <p className="text-3xl sm:text-4xl font-mono font-bold text-text-primary mb-0.5">95%</p>
@@ -400,7 +400,7 @@ export function Landing() {
       </section>
 
       {/* ── Solution — 3 Pillars ─────────────────────────────────── */}
-      <section className="py-20 px-4 border-y border-border bg-[#080c14]">
+      <section>
         <div className="max-w-[1120px] mx-auto">
           <div className="text-center mb-12">
             <p className="text-[11px] font-mono font-bold text-neon-lime uppercase tracking-widest mb-3">
