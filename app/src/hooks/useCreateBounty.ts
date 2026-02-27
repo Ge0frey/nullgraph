@@ -47,7 +47,7 @@ export function useCreateBounty() {
             new BN(args.rewardAmount),
             new BN(args.deadline)
           )
-          .accounts({
+          .accountsPartial({
             creator: publicKey,
             protocolState: protocolStatePDA,
             bounty: bountyPDA,

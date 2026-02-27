@@ -78,7 +78,7 @@ export function useApproveBountySubmission() {
 
         const tx = await program.methods
           .approveBountySubmission()
-          .accounts({
+          .accountsPartial({
             creator: publicKey,
             bounty: bounty.publicKey,
             submission: submission.publicKey,

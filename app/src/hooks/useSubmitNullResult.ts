@@ -47,7 +47,7 @@ export function useSubmitNullResult() {
             args.sampleSize,
             args.dataHash
           )
-          .accounts({
+          .accountsPartial({
             researcher: publicKey,
             protocolState: protocolStatePDA,
             nullResult: nullResultPDA,

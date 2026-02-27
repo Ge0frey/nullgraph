@@ -32,7 +32,7 @@ export function useCloseBounty() {
 
         const tx = await program.methods
           .closeBounty()
-          .accounts({
+          .accountsPartial({
             creator: publicKey,
             bounty: bounty.publicKey,
             vault: vaultPDA,

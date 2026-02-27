@@ -26,7 +26,7 @@ export function useSubmitToBounty() {
 
         const tx = await program.methods
           .submitToBounty()
-          .accounts({
+          .accountsPartial({
             researcher: publicKey,
             nullResult: nullResultKey,
             bounty: bountyKey,
