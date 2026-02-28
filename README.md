@@ -1,3 +1,10 @@
+### Quick links
+
+## Deployed Live Link: https://nullgraph.vercel.app/
+## YouTube Demo: https://youtu.be/D4JJj3ZvUeo
+
+---
+
 # NullGraph
 
 **Tokenizing the 95% of science that journals throw away.**
