@@ -1,5 +1,6 @@
 ### Quick links
 
+## NullGraph detailed docs: https://ge0frey-nullgraph.mintlify.app/introduction
 ## Deployed Live Link: https://nullgraph.vercel.app/
 ## YouTube Demo: https://youtu.be/D4JJj3ZvUeo
 
